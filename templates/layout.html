@@ -64,10 +64,16 @@
                 </div>
             </form>
             <div id="div-results" class="text-center">
-              {% if weather %}
-                <h4 style="display: inline-block;" >{{ weather["degrees"] }}°C</h4>
+              {% if weather_day %}
+                <h4 style="display: inline-block;" >{{ weather_day["degrees"] }}°C</h4>
                 <img src="{{ icon_url }}" alt="Where is icon?">
-                <h3>{{ weather["description"] }}</h3>
+                <h3>{{ weather_day["description"] }}</h3>
+              {% elif weather_week %}
+                {% for data in weather_week %}
+                  <h4 style="display: inline-block;" >{{ data["degrees"] }}°C</h4>
+                  <img src="{{ icon_url }}" alt="Where is icon?">
+                  <h3>{{ data["description"] }}</h3>
+                {% endfor %}
               {% elif text %}
                 <h4>{{ text }}</h4>
               {% endif %}
